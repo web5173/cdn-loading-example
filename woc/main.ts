@@ -1,0 +1,13 @@
+const html = `
+<!DOCTYPE html><html lang="zh-CN"class="dark"><head><style>body{background-color:#141414;margin:0;padding:0;display:grid;place-items:center;min-height:100vh}</style><meta charset="UTF-8"><meta name="viewport"content="width=device-width, initial-scale=1.0"><base href="https://unpkg.com/"/><link rel="icon"href="@web5173/woc@0.0.34/logo.png"><link rel="manifest"href="@web5173/woc@0.0.34/manifest.json"></head><body><div id="app"><p style="color: rgb(254, 51, 85);">loading...</p></div><script>const baseHref=document.querySelector("base").href;function loadCSS(filename){const link=document.createElement("link");link.rel="stylesheet";link.href=new URL(filename,baseHref).href;link.crossOrigin="anonymous";document.head.appendChild(link)}loadCSS("normalize.css@8.0.1/normalize.css");loadCSS("animate.css@4.1.1/animate.min.css");loadCSS("element-plus@2.9.5/dist/index.css");loadCSS("element-plus@2.9.5/theme-chalk/dark/css-vars.css");loadCSS("@web5173/woc@0.0.34/style.css");function loadScript(filename,isModule=false){const script=document.createElement("script");script.src=new URL(filename,baseHref).href;script.crossOrigin="anonymous";if(isModule){script.type="module"}document.head.appendChild(script)}loadScript("vue@3.5.13/dist/vue.runtime.global.prod.js");loadScript("element-plus@2.9.5/dist/index.full.min.js");loadScript("element-plus@2.9.5/dist/locale/zh-cn.min.js");loadScript("pocketbase@0.26.0/dist/pocketbase.umd.js");loadScript("@web5173/idb-keyval-woc@6.2.1/dist/umd.js");loadScript("exifr@7.1.3/dist/lite.umd.js");loadScript("wasm-vips@0.0.13/lib/vips.js");window.addEventListener("load",function(){loadScript("@web5173/woc@0.0.34/index.js",true)})</script></body></html>
+`;
+
+Deno.serve((_req) => {
+  return new Response(html, {
+    headers: {
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "Content-Type": "text/html",
+    },
+  });
+});
